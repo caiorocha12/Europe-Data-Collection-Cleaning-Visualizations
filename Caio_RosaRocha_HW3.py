@@ -54,7 +54,13 @@ pivot = pd.pivot_table(df_clean, index = "subregion", columns = "density_bin", v
 print(grouped_df)
 
 df_clean = df_clean[(df_clean["area"] > 0) & df_clean["pop_density"].notna()].copy()
+
+keep_cols = ["name", "region", "subregion", "population", "area", "pop_density", "density_bin"]
+df_clean = df_clean[keep_cols]
+
+
 df_clean.to_csv("q2data_cleaned.csv", index=False)
+
 
 #Q3. Visualizations
 
@@ -89,4 +95,7 @@ plt.ylabel("Subregion")
 plt.tight_layout()
 plt.savefig("v3_subregion_density_heatmap.png", dpi=150)
 plt.show()
+
+print(df_clean.columns.tolist())
+
 
